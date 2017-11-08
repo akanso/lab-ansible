@@ -20,22 +20,24 @@ We will also create ansible playbook consisting of multiple roles deploying mult
 ## Deploying a vagrant-cluster 
 ### Prerequisites (before you start the cluster creation):
 
-Start by cloning this repo:
-
-`git clone git@github.com:akanso/lab-ansible.git`
-
 Make sure you have [`virtualbox`](https://www.virtualbox.org/wiki/Downloads) installed on your machine (tested on versions >= 5.1.26r117224).
 
-Make sure you have `vagrant` installed (tested on 1.8 and 2.0).
+Make sure you have [`vagrant`](https://www.vagrantup.com/downloads.html) installed (tested on 1.8 and 2.0).
 
-Make sure the `hostmanager` plug in is installed using:
+Note: check if the `hostmanager` plug in is installed using:
 
 `vagrant plugin install vagrant-hostmanager`
+
+Even if it is not installed, the `vagrant up` command below will install it for you. 
 
 
 ### Provisioning the VMs and install ansible (all in one install):
 
-Simply move to the directory where the `Vagrantfile` resides and execute a vagrant up command:
+Start by cloning this repo:
+
+`git clone git@github.com:akanso/lab-ansible.git`
+
+Then, simply move to the directory where the `Vagrantfile` resides and execute a vagrant up command:
 
 ```shell
 cd lab-ansible
