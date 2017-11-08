@@ -6,7 +6,7 @@ require 'pathname'
 #making sure the dependencies exist
 unless Vagrant.has_plugin?("vagrant-hostmanager")
   system("vagrant plugin install vagrant-hostmanager")
-  puts "Hostmanager dependencies installed!"
+  puts "Hostmanager dependencies installed!, try the command again now"
   exit
 end
 
