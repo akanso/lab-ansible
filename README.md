@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Deploying k8s using kube-adm"
+title:  "Ansible on vagrant VMs"
 date:   2017-11-07 10:00:39 -0400
 author: Ali Kanso
 ---
@@ -18,7 +18,7 @@ In this lab we will create a vagrant cluster of 1 master-node with ansible insta
 We will also create ansible playbook consisting of multiple roles deploying multiple applications
 
 ## Deploying a vagrant-cluster 
-### Prerequisites (before you start k8s deployment):
+### Prerequisites (before you start the cluster creation):
 
 Start by cloning this repo:
 
@@ -33,7 +33,7 @@ Make sure the `hostmanager` plug in is installed using:
 `vagrant plugin install vagrant-hostmanager`
 
 
-### Provisioning the VMs and deploy k8s (all in one install):
+### Provisioning the VMs and install ansible (all in one install):
 
 Simply move to the directory where the `Vagrantfile` resides and execute a vagrant up command:
 
@@ -42,7 +42,7 @@ cd lab-ansible
 vagrant up
 ```
 
-This should take a few minutes, after which one master and 2 worker k8s nodes will be deployed
+This should take a few minutes, after which one master and 2 worker nodes will be provisoned
 
 ```shell
 vagrant status
