@@ -75,7 +75,7 @@ worker-node2 | SUCCESS => {
 
 ## Customizing the cluster provisioning in terms of the number/size of the VMs
 
-The configuration file [vg_config.rb](https://github.com/akanso/lab-ansible/vg_config.rb)
+The configuration file [vg_config.rb](https://github.com/akanso/lab-ansible/blob/master/vg_config.rb)
 
 You can change the values of all the variables in this file, e.g.:
 
