@@ -3,6 +3,13 @@
 require 'fileutils'
 require 'pathname'
 
+#making sure the dependencies exist
+unless Vagrant.has_plugin?("vagrant-hostmanager")
+  system("vagrant plugin install vagrant-hostmanager")
+  puts "Hostmanager dependencies installed!"
+  exit
+end
+
 #creating keys allowing inter-cluster ssh
 if ARGV[0] == "up"
     puts "Info: attempting to create ssh keys"
