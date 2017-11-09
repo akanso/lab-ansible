@@ -1,0 +1,26 @@
+---
+# tasks file for load-balancer
+
+- name: Ensure HAProxy is installed (Debian).
+  apt: name=haproxy state=installed
+  when: ansible_os_family == 'Debian'
+
+- name: Ensure HAProxy is enabled 
+  lineinfile:
+    dest: /etc/default/haproxy
+    regexp: "^ENABLED.+$"
+    line: "ENABLED=1"
+    state: present
+  when: ansible_os_family == 'Debian'
+
+
+- template:
+    src: haproxy.j2
+    dest: /opt/haproxy.cfg
+    owner: ubuntu
+    group: ubuntu
+    mode: 0666
+  notify: restart
+
+- name: Ensure HAProxy is started and enabled on boot time
+  service: name=haproxy state=started enabled=yes

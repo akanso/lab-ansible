@@ -1,0 +1,6 @@
+---
+- hosts: workers
+  become: yes
+
+  roles:
+    - load-balancer

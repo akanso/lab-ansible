@@ -1,0 +1,42 @@
+#jinja2:trim_blocks:False
+global
+  log 127.0.0.1 local0
+  maxconn 4096
+  ssl-default-bind-ciphers kEECDH+aRSA+AES:kRSA+AES:+AES256:RC4-SHA:!kEDH:!LOW:!EXP:!MD5:!aNULL:!eNULL
+
+defaults
+  log	global
+  mode	http
+  option	httplog
+  option	dontlognull
+  timeout connect 5s
+  timeout client 50s
+  timeout client-fin 50s
+  timeout server 50s
+  timeout tunnel 1h
+
+listen stats :{{haproxy_stats_port}}
+  mode http
+  stats enable
+  stats hide-version
+  stats realm Haproxy\ Statistics
+  stats uri /haproxy_stats
+  stats auth admin:admin
+
+#############################
+# web server LB
+#############################
+
+frontend front-web
+  bind *:{{front_port}}
+  mode http
+  option httplog
+  default_backend back-web
+
+backend back-web
+  mode tcp
+  option tcplog
+  balance roundrobin
+  {% for item in groups['workers'] %}
+    server ansible-lab-web-server{{loop.index}} {{item}}:{{http_port}}
+  {% endfor %}
