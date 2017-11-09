@@ -1,0 +1,25 @@
+---
+- hosts: master
+  become: yes
+  tasks:
+
+   - name: Update apt cache # apt-get update
+     apt:
+       update_cache: yes
+
+  - name: Update apt cache # apt-get update
+     shell: tree
+     register: shell_cmd
+     failed_when: shell_cmd.rc != 0
+
+       
+       
+   - name: install SW 
+     apt:
+       name: "{{ item }}" 
+       state: present
+     with_items:
+      - tree
+     when: shell_cmd.rc != 0
+   
+       
