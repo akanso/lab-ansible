@@ -102,6 +102,8 @@ Vagrant.configure("2") do |config|
         config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
         node.vm.provision "shell", inline: "apt-get update"
         node.vm.provision "shell", inline: "apt install -y python"
+        node.vm.provision "shell", inline: "apt install -y php libapache2-mod-php"
+        
       
         config.vm.provision :shell, :inline => <<-SCRIPT
           set -e

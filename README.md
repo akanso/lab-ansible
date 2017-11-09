@@ -88,3 +88,4 @@ $worker_vm_memory=1536
 $worker_vm_cpu=1
 ...
 ```
+After the change, you can re-run `vagrant up` from you workstation

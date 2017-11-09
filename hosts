@@ -1,3 +1,13 @@
+[master]
+master-node
+
 [workers]
 worker-node1
 worker-node2
+
+# The following inventory group defines the full set of machines in
+# the cluster. By using the keyword 'children' we can aggregate multiple groups
+
+[allhosts:children]
+master
+workers
