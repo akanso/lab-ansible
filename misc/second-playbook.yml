@@ -1,25 +1,35 @@
 ---
 - hosts: master
   become: yes
+
   tasks:
-
-   - name: Update apt cache # apt-get update
-     apt:
-       update_cache: yes
-
   - name: Update apt cache # apt-get update
-     shell: tree
-     register: shell_cmd
-     failed_when: shell_cmd.rc != 0
+    apt:
+      update_cache: yes
 
-       
-       
-   - name: install SW 
-     apt:
-       name: "{{ item }}" 
-       state: present
-     with_items:
-      - tree
-     when: shell_cmd.rc != 0
+  - name: remove SW 
+    apt:
+      name: tree 
+      state: absent
+
+  - name: test # apt-get update
+    shell: tree
+    register: shell_cmd
+    failed_when: shell_cmd.rc != 0
+    ignore_errors: True
+    changed_when: False
+    
+  - name: debugging
+    debug: msg="{{shell_cmd}}"
+    
+
+  - name: install SW 
+    apt:
+      name: "{{ item }}" 
+      state: present
+    with_items:
+    - tree
+    - sl
+    when: shell_cmd.rc != 0
    
        

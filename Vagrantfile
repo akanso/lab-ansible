@@ -85,6 +85,7 @@ Vagrant.configure("2") do |config|
     
         echo '#{public_key}' >> /home/ubuntu/.ssh/authorized_keys
         chmod 600 /home/ubuntu/.ssh/authorized_keys
+
       SCRIPT
 
       config.vm.provider "virtualbox" do |vb|
