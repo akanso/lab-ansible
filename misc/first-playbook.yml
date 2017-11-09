@@ -7,12 +7,11 @@
      apt:
        update_cache: yes
        
-   - name: install SW 
+   - name: install SW # make sure 'tree' is installed
      apt:
-       name: "{{ item }}" 
+       name: tree 
        state: present
-     with_items:
-      - tree
+
   
 
 

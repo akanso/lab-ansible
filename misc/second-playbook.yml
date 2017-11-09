@@ -7,23 +7,23 @@
     apt:
       update_cache: yes
 
-  - name: remove SW 
+  - name: remove SW # make sure'tree' is absent
     apt:
       name: tree 
       state: absent
 
-  - name: test # apt-get update
+  - name: test # check if 'tree' is there, ignore errors => don't exit the play
     shell: tree
     register: shell_cmd
     failed_when: shell_cmd.rc != 0
     ignore_errors: True
     changed_when: False
     
-  - name: debugging
+  - name: debugging # look into the content of the results of the shell cmd, we chose to store it in 'shell_cmd' variable
     debug: msg="{{shell_cmd}}"
     
 
-  - name: install SW 
+  - name: install SW # make sure 'tree' and 'sl' are installed
     apt:
       name: "{{ item }}" 
       state: present
